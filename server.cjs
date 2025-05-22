@@ -16,11 +16,8 @@ app.use(express.json());
 
 const PORT = process.env.PORT || 3000;
 
-// Multer setup
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, 'upload/'),
-  filename: (req, file, cb) => cb(null, `${Date.now()}-${file.originalname}`)
-});
+// Multer setup with memory storage
+const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
 // Gemini LLM Setup
@@ -66,8 +63,7 @@ app.get('/ping', (req, res) => {
 // Upload resume route with enhanced keyword extraction
 app.post('/upload-resume', upload.single('resume'), async (req, res) => {
   try {
-    const filePath = req.file.path;
-    const fileBuffer = fs.readFileSync(filePath);
+    const fileBuffer = req.file.buffer; // get file buffer directly from memory
     const data = await pdfParse(fileBuffer);
     const text = data.text;
 
