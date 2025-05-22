@@ -97,8 +97,8 @@ const rawKeywords = response.content || response.text || response;
       .map(k => k.trim())
       .filter(k => k.length > 0);
 
-    // Cleanup uploaded file
-    fs.unlinkSync(filePath);
+    /* Cleanup uploaded file
+    fs.unlinkSync(filePath);*/
 
     res.status(200).json({ keywords: finalKeywords });
   } catch (error) {
