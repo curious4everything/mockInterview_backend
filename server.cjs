@@ -18,7 +18,7 @@ const PORT = process.env.PORT || 3000;
 
 // Multer setup
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, 'null, '/tmp/''),
+  destination: (req, file, cb) => cb(null, 'upload/'),
   filename: (req, file, cb) => cb(null, `${Date.now()}-${file.originalname}`)
 });
 const upload = multer({ storage });
