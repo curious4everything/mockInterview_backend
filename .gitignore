@@ -1,0 +1,11 @@
+# Node modules
+node_modules/
+
+#upload
+upload/
+
+#testapp
+index.js
+
+# Environment variables
+.env
